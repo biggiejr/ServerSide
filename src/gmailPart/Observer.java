@@ -18,7 +18,7 @@ class Observer extends Thread {
     public static void main(String[] args) throws IOException {
 
         while (true) {
-
+            System.out.println("Ran");
             Observer o = new Observer();
             Thread t = new Thread(o);
             t.start();

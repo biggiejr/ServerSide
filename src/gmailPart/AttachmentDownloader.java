@@ -1,7 +1,7 @@
 package gmailPart;
 
 import com.dropbox.core.DbxException;
-import dropboxPart.DropboxManager;
+import dropboxPart.DropboxAuthUploader;
 import com.google.api.client.repackaged.org.apache.commons.codec.binary.Base64;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
@@ -9,7 +9,6 @@ import com.google.api.services.gmail.model.MessagePart;
 import com.google.api.services.gmail.model.MessagePartBody;
 import com.google.api.services.gmail.model.ModifyThreadRequest;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class AttachmentDownloader implements Runnable {
-    
+
     Gmail service;
     String userId;
     String messageId;
@@ -51,14 +50,16 @@ class AttachmentDownloader implements Runnable {
                         get(userId, messageId, attId).execute();
                 byte[] fileByteArray = Base64.decodeBase64(attachPart.getData());
 
-                //--------------------------------------------------------
+                //converting stream into a file
                 File tempFile = new File(filename);
                 try (FileOutputStream fileOutFile = new FileOutputStream(tempFile)) {
-                    
-                   fileOutFile.write(fileByteArray);
-                   fileOutFile.close();
-                //--------------------------------------------------------
-                   DropboxManager dm = new DropboxManager();
+
+                    fileOutFile.write(fileByteArray);
+                    fileOutFile.close();
+
+                    DropboxAuthUploader dm = new DropboxAuthUploader();
+
+                    //parsing to uploader
                     try {
                         dm.createAuthAndUpload(tempFile);
                     } catch (DbxException ex) {
@@ -88,9 +89,6 @@ class AttachmentDownloader implements Runnable {
      * @param labelsToRemove List of label ids to remove.
      * @throws IOException
      */
-    
-    
-    
     //Marking as read
     public static void modifyThread(Gmail service, String userId, String threadId,
             List<String> labelsToAdd, List<String> labelsToRemove) throws IOException {
@@ -98,8 +96,6 @@ class AttachmentDownloader implements Runnable {
                 .setRemoveLabelIds(labelsToRemove);
         com.google.api.services.gmail.model.Thread thread = service.users().threads().modify(userId, threadId, mods).execute();
 
-        System.out.println("Thread id: " + thread.getId());
-        System.out.println(thread.toPrettyString());
     }
 
     @Override
