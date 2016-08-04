@@ -1,7 +1,0 @@
-DB login
-username: sample.projektis@gmail.com
-pass: VFK-PNy-U3G-z9G
-
-Gmail login
-username: sample.projektis
-pass: YUE-Wbq-vHY-YW7
