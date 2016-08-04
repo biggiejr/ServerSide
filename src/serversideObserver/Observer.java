@@ -22,7 +22,6 @@ class Observer extends Thread {
             Observer o = new Observer();
             Thread t = new Thread(o);
             t.start();
-
             try {
                 Thread.sleep(1800000);//sleeps for half an hour
             } catch (InterruptedException ex) {
@@ -45,6 +44,7 @@ class Observer extends Thread {
         lister = new UnreadMessageLister(service, userId);
         Thread t = new Thread(lister);
         t.start();
+
     }
 
 }

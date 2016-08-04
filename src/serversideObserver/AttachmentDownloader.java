@@ -5,9 +5,10 @@ import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
 import com.google.api.services.gmail.model.MessagePart;
 import com.google.api.services.gmail.model.MessagePartBody;
-
+import com.google.api.services.gmail.model.ModifyThreadRequest;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,11 +45,43 @@ class AttachmentDownloader implements Runnable {
                 MessagePartBody attachPart = service.users().messages().attachments().
                         get(userId, messageId, attId).execute();
                 byte[] fileByteArray = Base64.decodeBase64(attachPart.getData());
-                try (FileOutputStream fileOutFile = new FileOutputStream("directory_to_store_attachments" + filename)) {
+
+                //--------------------------------------------------------
+                try (FileOutputStream fileOutFile = new FileOutputStream("/Users/Mato/Desktop/test/" + filename)) {
+                    //--------------------------------------------------------
+
                     fileOutFile.write(fileByteArray);
+
+                    List<String> toRemove = new ArrayList();
+                    toRemove.add("UNREAD");
+
+                    List<String> toAdd = new ArrayList<>();
+                    modifyThread(service, userId, messageId, toAdd, toRemove);
                 }
             }
         }
+
+    }
+
+    /**
+     * Modify the Labels applied to a Thread..
+     *
+     * @param service Authorized Gmail API instance.
+     * @param userId User's email address. The special value "me" can be used to
+     * indicate the authenticated user.
+     * @param threadId Id of the thread within the user's account.
+     * @param labelsToAdd List of label ids to add.
+     * @param labelsToRemove List of label ids to remove.
+     * @throws IOException
+     */
+    public static void modifyThread(Gmail service, String userId, String threadId,
+            List<String> labelsToAdd, List<String> labelsToRemove) throws IOException {
+        ModifyThreadRequest mods = new ModifyThreadRequest().setAddLabelIds(labelsToAdd)
+                .setRemoveLabelIds(labelsToRemove);
+        com.google.api.services.gmail.model.Thread thread = service.users().threads().modify(userId, threadId, mods).execute();
+
+        System.out.println("Thread id: " + thread.getId());
+        System.out.println(thread.toPrettyString());
     }
 
     @Override

@@ -36,7 +36,6 @@ class UnreadMessageLister extends Thread  {
     public  List<Message> listMessagesMatchingQuery(Gmail service, String userId,
       String query) throws IOException {
     ListMessagesResponse response = service.users().messages().list(userId).setQ(query).execute();
-
     messages = new ArrayList<>();
     while (response.getMessages() != null) {
       messages.addAll(response.getMessages());
@@ -48,6 +47,7 @@ class UnreadMessageLister extends Thread  {
         break;
       }
     }
+
 
     for (Message message : messages) {
       System.out.println(message.toPrettyString());
@@ -70,14 +70,10 @@ class UnreadMessageLister extends Thread  {
             t.start();
         }
     }
-//    
-//   
 
     @Override
     public void run(){
-            sendId();
-            //listMessagesMatchingQuery(service, userId, query);
-        
+            sendId();        
 
     }
 
