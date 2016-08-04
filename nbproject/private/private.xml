@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Mato/NetBeansProjects/ServerSide/manifest.mf</file>
-            <file>file:/Users/Mato/NetBeansProjects/ServerSide/nbproject/project.xml</file>
-            <file>file:/Users/Mato/NetBeansProjects/ServerSide/build.xml</file>
-            <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/serversideObserver/GmailQuickstart.java</file>
-            <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/serversideObserver/AttachmentDownloader.java</file>
-            <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/serversideObserver/Observer.java</file>
-            <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/serversideObserver/UnreadMessageLister.java</file>
+            <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/gmailPart/Observer.java</file>
+            <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/DropboxPart/DropboxManager.java</file>
+            <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/gmailPart/AttachmentDownloader.java</file>
         </group>
     </open-files>
 </project-private>
