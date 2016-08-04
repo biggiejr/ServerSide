@@ -18,9 +18,9 @@ class Observer extends Thread{
      
         UnreadMessageLister lister = new UnreadMessageLister(service, userId);
         //while (true) {
-        
+        //nespravne riesenie
             Timer timer = new Timer();
-            timer.schedule(lister, 1000);//refreshes every 1/2 hour
+            timer.schedule(lister, 1000);   //refreshes every 1/2 hour
             
         //}
     }
