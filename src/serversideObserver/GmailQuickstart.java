@@ -56,7 +56,7 @@ public class GmailQuickstart {
      * ~/.credentials/gmail-java-quickstart.json
      */
     private static final List<String> SCOPES
-            = Arrays.asList(GmailScopes.GMAIL_LABELS);
+            = Arrays.asList(GmailScopes.MAIL_GOOGLE_COM);
 
     static {
         try {

@@ -7,11 +7,10 @@ import com.google.api.services.gmail.model.Message;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class UnreadMessageLister extends TimerTask  {
+class UnreadMessageLister extends Thread  {
 
     AttachmentDownloader ad;
     Gmail service;
