@@ -40,6 +40,7 @@ class AttachmentDownloader implements Runnable {
      */
     private static void getAttachments(Gmail service, String userId, String messageId)
             throws IOException {
+
         Message message = service.users().messages().get(userId, messageId).execute();
         List<MessagePart> parts = message.getPayload().getParts();
         for (MessagePart part : parts) {

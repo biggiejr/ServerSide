@@ -16,7 +16,7 @@ class UnreadMessageLister extends Thread  {
     Gmail service;
     List<Message> messages;
     String userId;
-    String query = "is:unread";
+    String query = "<info@akcneletaky.sk> is:unread";
 
     public UnreadMessageLister(Gmail service, String userId) {
         this.service = service;
