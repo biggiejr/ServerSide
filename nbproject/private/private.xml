@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/gmailPart/UnreadMessageLister.java</file>
+            <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/gmailPart/GmailQuickstart.java</file>
             <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/dropboxPart/DropboxAuthUploader.java</file>
             <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/gmailPart/Observer.java</file>
             <file>file:/Users/Mato/NetBeansProjects/ServerSide/src/gmailPart/AttachmentDownloader.java</file>
